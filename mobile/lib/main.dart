@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:meu_delivery/app/core/ui/meu_delivery_ui.dart';
 import 'package:meu_delivery/app/routes/splash_routers.dart';
 
 void main() {
@@ -14,6 +15,7 @@ class MeuDeliveryMainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: "Meu Delivery",
+      theme: MeuDeliveryUI.theme,
       getPages: [
         ...SplashRouters.routers,
       ],
