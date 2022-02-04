@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_utils/get_utils.dart';
 import 'package:meu_delivery/app/core/ui/widgets/delivery_button.dart';
 
@@ -34,7 +35,9 @@ class SplashPage extends StatelessWidget {
                     height: 60,
                   ),
                   DeliveryButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.toNamed('/auth/login');
+                      },
                       width: context.widthTransformer(reducedBy: 40),
                       height: 35,
                       label: 'ACESSAR'),

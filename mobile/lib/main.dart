@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meu_delivery/app/core/ui/meu_delivery_ui.dart';
+import 'package:meu_delivery/app/routes/auth_routers.dart';
 import 'package:meu_delivery/app/routes/splash_routers.dart';
 
 void main() {
@@ -18,6 +19,7 @@ class MeuDeliveryMainApp extends StatelessWidget {
       theme: MeuDeliveryUI.theme,
       getPages: [
         ...SplashRouters.routers,
+        ...AuthRouters.routers,
       ],
     );
   }
