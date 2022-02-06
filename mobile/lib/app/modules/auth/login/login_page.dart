@@ -4,6 +4,7 @@ import 'package:meu_delivery/app/core/ui/meu_delivery_ui.dart';
 import 'package:meu_delivery/app/core/ui/widgets/delivery_appbar.dart';
 import 'package:meu_delivery/app/core/ui/widgets/delivery_button.dart';
 import 'package:meu_delivery/app/core/ui/widgets/delivery_textformfield.dart';
+import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -53,7 +54,9 @@ class LoginPage extends StatelessWidget {
                           children: [
                             const Text('Não possui uma conta?'),
                             TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Get.toNamed('/auth/register');
+                                },
                                 child: const Text(
                                   'Cadastre-se',
                                   style: MeuDeliveryUI.textBold,
