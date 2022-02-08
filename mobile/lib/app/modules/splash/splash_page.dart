@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_utils/get_utils.dart';
 import 'package:meu_delivery/app/core/ui/widgets/delivery_button.dart';
 
 class SplashPage extends StatelessWidget {

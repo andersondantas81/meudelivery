@@ -1,13 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:meu_delivery/app/core/ui/meu_delivery_ui.dart';
+import 'package:meu_delivery/app/core/ui/delivery_state.dart';
 import 'package:meu_delivery/app/core/ui/widgets/delivery_appbar.dart';
 import 'package:get/get.dart';
 import 'package:meu_delivery/app/core/ui/widgets/delivery_button.dart';
 import 'package:meu_delivery/app/core/ui/widgets/delivery_textformfield.dart';
 import 'package:meu_delivery/app/modules/auth/register/register_controller.dart';
+import 'package:validatorless/validatorless.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState
+    extends DeliveryState<RegisterPage, RegisterController> {
+  final _formKey = GlobalKey<FormState>();
+  final _nameEC = TextEditingController();
+  final _emailEC = TextEditingController();
+  final _passwordEC = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +31,7 @@ class RegisterPage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Form(
+              key: _formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -35,19 +48,48 @@ class RegisterPage extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
-                  DeliveryTextformfield(label: 'Nome'),
+                  DeliveryTextformfield(
+                    label: 'Nome',
+                    controller: _nameEC,
+                    validator: Validatorless.multiple([
+                      Validatorless.required("Nome obrigatório"),
+                      Validatorless.min(2, 'Nome inválido')
+                    ]),
+                  ),
                   const SizedBox(
                     height: 30,
                   ),
-                  DeliveryTextformfield(label: 'E-mail'),
+                  DeliveryTextformfield(
+                      label: 'E-mail',
+                      controller: _emailEC,
+                      validator: Validatorless.multiple([
+                        Validatorless.required('E-mail obrigatório'),
+                        Validatorless.email('E-mail inválido')
+                      ])),
                   const SizedBox(
                     height: 30,
                   ),
-                  DeliveryTextformfield(label: 'Senha'),
+                  DeliveryTextformfield(
+                    label: 'Senha',
+                    controller: _passwordEC,
+                    obscureText: true,
+                    validator: Validatorless.multiple([
+                      Validatorless.required('Senha obrigatório'),
+                      Validatorless.min(
+                          6, "Senha deve conter pelo menos 6 caracteres.")
+                    ]),
+                  ),
                   const SizedBox(
                     height: 30,
                   ),
-                  DeliveryTextformfield(label: 'Confirma senha'),
+                  DeliveryTextformfield(
+                    label: 'Confirma senha',
+                    obscureText: true,
+                    validator: Validatorless.multiple([
+                      Validatorless.required('Confirma senha obrigatório'),
+                      Validatorless.compare(_passwordEC, 'Senha diferente'),
+                    ]),
+                  ),
                   const SizedBox(
                     height: 50,
                   ),
@@ -55,7 +97,14 @@ class RegisterPage extends StatelessWidget {
                     child: DeliveryButton(
                         width: double.infinity,
                         onPressed: () {
-                          Get.find<RegisterController>().qualquer();
+                          final formValid =
+                              _formKey.currentState?.validate() ?? false;
+                          if (formValid) {
+                            controller.register(
+                                name: _nameEC.text,
+                                email: _emailEC.text,
+                                password: _passwordEC.text);
+                          }
                         },
                         label: 'CADASTRAR'),
                   ),
