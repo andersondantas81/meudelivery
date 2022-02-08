@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:meu_delivery/app/modules/auth/login/login_page.dart';
+import 'package:meu_delivery/app/modules/auth/register/register_bindings.dart';
 import 'package:meu_delivery/app/modules/auth/register/register_page.dart';
 
 class AuthRouters {
@@ -12,6 +13,7 @@ class AuthRouters {
     ),
     GetPage(
       name: '/auth/register',
+      binding: RegisterBindings(),
       page: () => const RegisterPage(),
     )
   ];

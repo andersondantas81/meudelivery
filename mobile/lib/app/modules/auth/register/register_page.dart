@@ -4,6 +4,7 @@ import 'package:meu_delivery/app/core/ui/widgets/delivery_appbar.dart';
 import 'package:get/get.dart';
 import 'package:meu_delivery/app/core/ui/widgets/delivery_button.dart';
 import 'package:meu_delivery/app/core/ui/widgets/delivery_textformfield.dart';
+import 'package:meu_delivery/app/modules/auth/register/register_controller.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -53,21 +54,10 @@ class RegisterPage extends StatelessWidget {
                   Center(
                     child: DeliveryButton(
                         width: double.infinity,
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.find<RegisterController>().qualquer();
+                        },
                         label: 'CADASTRAR'),
-                  ),
-                  const Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text('Não possui uma conta?'),
-                      TextButton(
-                          onPressed: () {},
-                          child: const Text(
-                            'Cadastre-se',
-                            style: MeuDeliveryUI.textBold,
-                          ))
-                    ],
                   ),
                 ],
               ),
