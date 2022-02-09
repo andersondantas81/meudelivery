@@ -22,6 +22,14 @@ class _RegisterPageState
   final _passwordEC = TextEditingController();
 
   @override
+  void dispose() {    
+    _nameEC.dispose();
+    _emailEC.dispose();
+    _passwordEC.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: DeliveryAppbar(elevation: 0),
@@ -95,18 +103,19 @@ class _RegisterPageState
                   ),
                   Center(
                     child: DeliveryButton(
-                        width: double.infinity,
-                        onPressed: () {
-                          final formValid =
-                              _formKey.currentState?.validate() ?? false;
-                          if (formValid) {
-                            controller.register(
-                                name: _nameEC.text,
-                                email: _emailEC.text,
-                                password: _passwordEC.text);
-                          }
-                        },
-                        label: 'CADASTRAR'),
+                      width: double.infinity,
+                      label: 'CADASTRAR',
+                      onPressed: () {
+                        final formValid =
+                            _formKey.currentState?.validate() ?? false;
+                        if (formValid) {
+                          controller.register(
+                              name: _nameEC.text,
+                              email: _emailEC.text,
+                              password: _passwordEC.text);
+                        }
+                      },
+                    ),
                   ),
                 ],
               ),

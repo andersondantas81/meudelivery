@@ -1,10 +1,8 @@
 import 'dart:developer';
-
 import 'package:get/get.dart';
 import 'package:meu_delivery/app/core/mixins/loader_mixin.dart';
 import 'package:meu_delivery/app/core/mixins/messages_mixin.dart';
 import 'package:meu_delivery/app/core/rest_client/rest_client.dart';
-import 'package:meu_delivery/app/models/user_model.dart';
 import 'package:meu_delivery/app/repositories/auth/auth_repository.dart';
 
 class RegisterController extends GetxController
